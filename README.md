@@ -15,9 +15,9 @@ Aplicação de controle financeiro veicular, alimentado pela entrada de dados do
 
 ## Requisitos mínimos do sistema
 
-<a href="https://nodejs.org/en/">Nodejs 8.11.3 ou superior</a>  
-<a href="https://nodejs.org/en/">npm 6.5.0 ou superior</a>  
-<a href="https://www.docker.com/get-started">Docker 18 ou superior</a>  (apenas em desenvolvimento, para o banco de dados)
+<a href="https://nodejs.org/en/">Nodejs 8.11.3</a> ou superior  
+<a href="https://nodejs.org/en/">npm 6.5.0</a> ou superior  
+ <a href="https://www.docker.com/get-started">Docker 18</a> ou superior (apenas em desenvolvimento, para o banco de dados)
 
 ## Instalação das dependências
 
