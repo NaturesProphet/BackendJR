@@ -27,13 +27,17 @@
     "rxjs": "^6.0.0",
     "typescript": "^2.6.2",
     "ts-node": "^4.1.0",
-    "tsconfig-paths": "^3.1.1"
+    "tsconfig-paths": "^3.1.1",
+    "@types/express": "^4.0.39",
+    "@types/node": "^9.3.0",
+    "ts-loader": "^4.1.0",
+    "webpack": "^4.2.0",
+    "webpack-cli": "^2.0.13",
+    "webpack-node-externals": "^1.6.0"
   },
   "devDependencies": {
     "@nestjs/testing": "^5.0.0",
-    "@types/express": "^4.0.39",
     "@types/jest": "^21.1.8",
-    "@types/node": "^9.3.0",
     "@types/supertest": "^2.0.4",
     "commitizen": "^3.0.5",
     "cz-conventional-changelog": "^2.1.0",
@@ -44,12 +48,8 @@
     "standard-version": "^4.4.0",
     "supertest": "^3.0.0",
     "ts-jest": "^21.2.4",
-    "ts-loader": "^4.1.0",
     "tslint": "5.3.2",
-    "validate-commit-msg": "^2.14.0",
-    "webpack": "^4.2.0",
-    "webpack-cli": "^2.0.13",
-    "webpack-node-externals": "^1.6.0"
+    "validate-commit-msg": "^2.14.0"
   },
   "jest": {
     "moduleFileExtensions": [
