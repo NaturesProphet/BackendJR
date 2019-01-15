@@ -1,0 +1,30 @@
+language: 
+- node_js
+- java
+node_js:
+- "node"
+dist: trusty
+addons:
+ sonarcloud:
+   organization: "$SONAR_ORGANIZATION"
+   token:
+     secure: "$SONAR_TOKEN"
+script:
+# instalar dependências
+- npm install
+# executar os testes
+- npm run test
+- npm run test:e2e
+- npm run test:cov
+- ls
+# análise de qualidade de código
+ - sonar-scanner
+
+# se o commit for tageado e o script acima passar, executa automaticamente o deploy no Heroku
+deploy:
+  provider: heroku
+  api_key:
+    secure: "$HEROKU_API_KEY"
+  app: $HEROKU_APP
+  on: 
+    tags: true
