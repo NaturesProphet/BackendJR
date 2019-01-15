@@ -16,9 +16,8 @@ script:
 - npm run test
 - npm run test:e2e
 - npm run test:cov
-- ls
 # análise de qualidade de código
- - sonar-scanner
+- sonar-scanner
 
 # se o commit for tageado e o script acima passar, executa automaticamente o deploy no Heroku
 deploy:
