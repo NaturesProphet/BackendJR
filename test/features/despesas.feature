@@ -16,6 +16,7 @@ Então recebo uma mensagem de erro com um código 400 na Resposta
 
 Cenário: O usuário está autenticado na seção mas o veículo informado não pertence a ele.
 Dado Quero registrar uma nova despesa de um veículo
+E este veículo não me pertence
 Quando eu enviar os dados de registro
 Então recebo uma mensagem de erro com um código 403 na Resposta
 
