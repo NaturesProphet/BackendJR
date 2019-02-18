@@ -20,6 +20,19 @@ Aplicação de controle financeiro veicular, alimentado pela entrada de dados do
 <a href="https://nodejs.org/en/">npm 6.5.0</a> ou superior  
  <a href="https://www.docker.com/get-started">Docker 18</a> ou superior (apenas em desenvolvimento, para o banco de dados)
 
+## Variáveis de ambiente para produção
+
+```bash
+DB_HOST             # Endereço do servidor postgresql. Default localhost
+DB_PORT             # Porta utilizada na conexão ao servidor psotgresql. Default 5432
+DB_USER             # Usuário do banco de dados. Default julius
+DB_PASSWORD         # senha do banco de dados. Default juliuspass
+DB_SCHEMA           # Nome do banco de dados. Default juliusreport
+DB_ORM_SYNC         # Liga ou desliga o sync do orm. Default false
+NODE_ENV            # Ambiente de execução. Ajuste para 'production' em produção
+PORT                # Porta onde a API vai ouvir. Default 3000
+```
+
 ## Instalação das dependências
 
 ```bash
@@ -27,16 +40,16 @@ $ npm install
 ```
 
 ## Executando o serviço
+### Banco de dados
+Utilize o script pré configurado no package. Ele levanta um banco de dados Postgresql já configurado para funcionar com a aplicação em ambiente de desenvolvimento.  
 
+```bash
+npm run postgre:test
+```
+### Subindo a aplicação
 ```bash
 # development
 $ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-npm run start:prod
 ```
 
 ## Documentação em Swagger
