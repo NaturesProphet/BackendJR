@@ -9,7 +9,7 @@ export class usuarioController {
 
     @Post()
     public async salvar( @Req() req, @Res() res ) {
-        const pessoa = await this.service.cadastraNovoUsuario( Object.assign( req.body ) );
+        const pessoa: Usuario = await this.service.cadastraNovoUsuario( Object.assign( req.body ) );
         if ( pessoa ) {
             res.status( HttpStatus.OK ).send( `Usuario cadastrado: ${JSON.stringify( pessoa )}` );
         }
