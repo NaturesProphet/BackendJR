@@ -39,6 +39,10 @@ $ npm run start:dev
 npm run start:prod
 ```
 
+## Documentação em Swagger
+Acesse a rota /docs para conferir a documentação da api no Swagger
+
+
 ## Testes automatizados
 
 ```bash

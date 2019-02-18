@@ -1,4 +1,4 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpStatus, UnauthorizedException } from '@nestjs/common';
+import { ArgumentsHost, Catch, ExceptionFilter, HttpStatus, UnauthorizedException, NotFoundException } from '@nestjs/common';
 import { AppError } from '../error/AppError';
 
 
@@ -21,17 +21,16 @@ export class DispatchError implements ExceptionFilter {
             } );
 
         } else if ( exception instanceof UnauthorizedException ) {
-            console.log( exception.message );
-            console.error( exception.stack );
             return res.status( HttpStatus.UNAUTHORIZED ).json( exception.message );
 
-        } else if ( exception.status === 403 ) {
+        } else if ( exception instanceof NotFoundException ) {
+            return res.status( HttpStatus.NOT_FOUND ).json( exception.message );
+        }
+        else if ( exception.status === 403 ) {
             return res.status( HttpStatus.FORBIDDEN ).json( exception.message );
         }
         else {
-            console.error( exception.message );
-            console.error( exception.stack );
-            return res.status( HttpStatus.INTERNAL_SERVER_ERROR ).send();
+            return res.status( HttpStatus.INTERNAL_SERVER_ERROR ).send( exception.message );
         }
     }
 }
