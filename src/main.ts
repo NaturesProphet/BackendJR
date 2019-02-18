@@ -4,12 +4,7 @@ import { DispatchError } from './common/filter/DispatchError';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 const pacote = require( '../package.json' ); // dados do projeto
 const ambiente = process.env.NODE_ENV; // informa se é ambiente DEV ou PROD
-let porta = 3000;
-try {
-  porta = parseInt( process.env.PORTA );
-} catch ( erro ) {
-  console.log( `Erro ao ler o valor da porta na configuração de ambiente\n${erro.message}` );
-}
+let porta = process.env.PORT || 3000;
 /**
  * procedimento que configura e inicializa a aplicação inteira
  */
