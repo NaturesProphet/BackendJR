@@ -48,6 +48,16 @@ export class AppError extends Error {
                     timestamp: new Date().toUTCString()
                 };
                 break;
+
+            case AppErrorTypeEnum.DADOS_INVALIDOS:
+                res = {
+                    type: AppErrorTypeEnum.DADOS_INVALIDOS,
+                    status: HttpStatus.BAD_REQUEST,
+                    errorMessage: 'Dados inválidos',
+                    userMessage: 'Os dados informados são inválidos, verifique e tente novamente',
+                    timestamp: new Date().toUTCString()
+                };
+                break;
         }
 
 

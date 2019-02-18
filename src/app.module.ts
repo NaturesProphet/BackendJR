@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BancoConfig } from './common/configs/banco.config';
+import { usuarioController } from 'controllers/usuario.controller';
+import { UsuarioService } from 'services/usuario/usuario.service';
 const database = new BancoConfig();
 
 @Module( {
@@ -17,7 +19,7 @@ const database = new BancoConfig();
     synchronize: database.sync,
   } ) ],
 
-  controllers: [ AppController ],
-  providers: [ AppService ],
+  controllers: [ AppController, usuarioController ],
+  providers: [ AppService, UsuarioService ],
 } )
 export class AppModule { }

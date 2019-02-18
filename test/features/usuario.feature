@@ -20,4 +20,4 @@ Cenário: O Usuário já existe
 Dado Quero registrar um novo usuário no sistema
 E enviei um nome de login que já existe no sistema
 Quando eu enviar os dados de registro
-Então recebo uma mensagem de erro com um código 409 na Resposta
+Então recebo uma mensagem de erro com um código 422 na Resposta
