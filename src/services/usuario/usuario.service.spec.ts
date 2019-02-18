@@ -39,6 +39,28 @@ describe( 'UsuarioService', () => {
             pessoa.login = 'existente';
             pessoa.passwordHash = 'test@123***';
             pessoa.endereco = 'avenida central 69';
-            // expect( await service.cadastraNovoUsuario( pessoa ) ).toThrowError;
+            let erro: AppError;
+            try {
+                let retorno = await service.cadastraNovoUsuario( pessoa );
+            } catch ( e ) { erro = e; }
+            expect( erro.status ).toBe( 422 );
+            expect( erro.userMessage ).toBe( 'Este nome de usuário já existe em nossos registros. Tente outro.' );
+        } );
+
+
+    it( 'cadastraNovoUsuario(pessoa) --> espera-se um erro em caso de dados inválidos',
+        async () => {
+            let pessoa: Usuario = new Usuario();
+            pessoa.email = 'eunaotenhoarrobas';
+            pessoa.nome = 'joaum';
+            pessoa.login = 'joaum';
+            pessoa.passwordHash = 'test@123***';
+            pessoa.endereco = 'avenida central 69';
+            let erro: AppError;
+            try {
+                let retorno = await service.cadastraNovoUsuario( pessoa );
+            } catch ( e ) { erro = e; }
+            expect( erro.status ).toBe( 400 );
+            expect( erro.userMessage ).toBe( 'Os dados informados são inválidos, verifique e tente novamente' );
         } );
 } );
