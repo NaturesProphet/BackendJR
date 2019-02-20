@@ -1,0 +1,103 @@
+import { defineFeature, loadFeature } from "jest-cucumber";
+import { Test, TestingModule } from "@nestjs/testing";
+const feature = loadFeature( "./test/features/usuario.feature" );
+
+import { INestApplication } from "@nestjs/common";
+import * as request from "supertest";
+import { AppModule } from "../src/app.module";
+import { UsuarioDto } from "../src/JuliusReport/usuario/usuario.dto";
+
+jest.mock( "../src/JuliusReport/usuario/usuario.service" );
+jest.mock( "../src/JuliusReport/julius-report.module" );
+
+defineFeature( feature, test => {
+    let module: TestingModule;
+    let app: INestApplication;
+    let httpserver;
+    let endpoint;
+    let response;
+    let obj = new UsuarioDto();
+    beforeAll( async () => {
+        module = await Test.createTestingModule( {
+            imports: [ AppModule ]
+        } ).compile();
+        app = module.createNestApplication();
+        await app.init();
+        httpserver = await app.getHttpServer();
+    } );
+
+    test( "Os dados informados são válidos", ( { given, when, then } ) => {
+        given( "Quero registrar um novo usuário no sistema", () => {
+            endpoint = '/usuario';
+        } );
+
+        when( "eu enviar os dados de registro", async () => {
+            obj.email = 'nome@server.com';
+            obj.endereco = 'avenida dos testes 45';
+            obj.login = 'bond';
+            obj.nome = 'james bond';
+            obj.senha = '007____';
+            obj.telefone = '0007007007';
+            response = await request( httpserver )
+                .post( endpoint )
+                .send( obj );
+        } );
+        then( "recebo uma mensagem de confirmação com um código 201 na Resposta", () => {
+            expect( response.status ).toBe( 201 );
+        } );
+    } );
+    //--------------------------------------------------------------------------------
+    test( "Os dados informados NÃO são válidos", async ( { given, and, when, then } ) => {
+        given( "Quero registrar um novo usuário no sistema", () => {
+            endpoint = '/usuario';
+        } );
+
+        and( "digitei dados de registro inválidos ou nulos", () => {
+            obj.email = 'nome_server.com';
+            obj.endereco = 'avenida dos testes 45';
+            obj.login = 'bond';
+            obj.nome = 'james bond';
+            obj.senha = '007____';
+            obj.telefone = '0007007007';
+        } );
+
+        when( "eu enviar os dados de registro", async () => {
+            response = await request( httpserver )
+                .post( endpoint )
+                .send( obj );
+        } );
+        then( "recebo uma mensagem de erro com um código 400 na Resposta", () => {
+            expect( response.status ).toBe( 400 );
+        } );
+    } );
+    //---------------------------------------------------------------------------------------
+    test( "O Usuário já existe", ( { given, and, when, then } ) => {
+        given( "Quero registrar um novo usuário no sistema", () => {
+            request( httpserver )
+                .get( "/v1/recentes" )
+                .expect( 400 );
+        } );
+
+        and( "digitei um nome de login que já existe no sistema", () => {
+            request( httpserver )
+                .get( "/v1/recentes" )
+                .expect( 400 );
+        } );
+
+        when( "eu enviar os dados de registro", () => {
+            request( httpserver )
+                .get( "/v1/recentes" )
+                .expect( 400 );
+        } );
+        then( "recebo uma mensagem de erro com um código 422 na Resposta", () => {
+            request( httpserver )
+                .get( "/v1/recentes" )
+                .expect( 400 )
+                .end();
+        } );
+    } );
+    afterAll( async () => {
+        await app.close();
+    } );
+
+} );

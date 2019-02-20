@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Usuario } from '../usuario.model';
 import * as EmailValidator from 'email-validator';
-import { AppError } from '../../../common/error/AppError';
-import { AppErrorTypeEnum } from '../../../common/error/AppErrorTypeEnum';
 import { UsuarioDto } from '../usuario.dto';
 
 @Injectable()
@@ -21,7 +19,7 @@ export class UsuarioService {
         test.login = 'existente'; // mocka o caso de um usuário já existente
 
         if ( test.login == pessoa.login ) { // mocka o caso de um usuário já existente
-            throw new AppError( AppErrorTypeEnum.USUARIO_EXISTE );
+            throw new Error( "Este nome de usuário já existe em nossos registros. Tente outro." );
         } else {
             // validação
             if (
@@ -50,7 +48,7 @@ export class UsuarioService {
                 usuario.id = 123; // mocka a query de inserção no banco
                 return usuario; // mocka a query de inserção no banco
             } else {
-                throw new AppError( AppErrorTypeEnum.DADOS_INVALIDOS );
+                throw new Error( "Os dados informados são inválidos, verifique e tente novamente" );
             }
         }
     }

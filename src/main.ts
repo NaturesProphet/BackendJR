@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { DispatchError } from './common/filter/DispatchError';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 const pacote = require( '../package.json' ); // dados do projeto
 const ambiente = process.env.NODE_ENV; // informa se é ambiente DEV ou PROD
@@ -10,7 +9,6 @@ let porta = process.env.PORT || 3000;
  */
 async function bootstrap() {
   const app = await NestFactory.create( AppModule );
-  app.useGlobalFilters( new DispatchError() ); // configura o filtro de erro global
   let options; // seleciona o schema http fora de prod e https em prod
   if ( ambiente == 'production' ) {
     options = new DocumentBuilder()

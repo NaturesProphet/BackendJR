@@ -1,6 +1,5 @@
 import { UsuarioService } from './usuario.service';
 import { Usuario } from './usuario.model';
-import { AppError } from '../../common/error/AppError';
 import { UsuarioDto } from './usuario.dto';
 jest.mock( './usuario.service' );
 
@@ -37,12 +36,11 @@ test( 'cadastraNovoUsuario(pessoa) --> espera-se um erro em caso de o usuário j
         endereco: 'avenida central 69',
         telefone: '9999 9999'
     };
-    let erro: AppError;
+    let erro: Error;
     try {
         let retorno = await service.cadastraNovoUsuario( pessoa );
     } catch ( e ) { erro = e; }
-    expect( erro.status ).toBe( 422 );
-    expect( erro.userMessage ).toBe( 'Este nome de usuário já existe em nossos registros. Tente outro.' );
+    expect( erro.message ).toBe( "Este nome de usuário já existe em nossos registros. Tente outro." );
 } );
 
 
@@ -55,11 +53,10 @@ test( 'cadastraNovoUsuario(pessoa) --> espera-se um erro em caso de dados invál
         endereco: 'avenida central 69',
         telefone: '9999 9999'
     };
-    let erro: AppError;
+    let erro: Error;
     try {
         let retorno = await service.cadastraNovoUsuario( pessoa );
     } catch ( e ) { erro = e; }
-    expect( erro.status ).toBe( 400 );
-    expect( erro.userMessage ).toBe( 'Os dados informados são inválidos, verifique e tente novamente' );
+    expect( erro.message ).toBe( "Os dados informados são inválidos, verifique e tente novamente" );
 } );
 
