@@ -25,16 +25,16 @@ export class usuarioController {
     } )
 
 
-    public async salvar( @Body() usuarioDto: UsuarioDto, @Res() res ) {
+    public async salvar ( @Body() usuarioDto: UsuarioDto, @Res() res ) {
         try {
             const pessoa: Usuario = await this.service.cadastraNovoUsuario( usuarioDto );
             if ( pessoa ) {
                 res.status( HttpStatus.CREATED ).send( `Usuario cadastrado: ${JSON.stringify( pessoa )}` );
             }
         } catch ( e ) {
-            if ( e.message == "Os dados enviados são inválidos. verifique e tente novamente" ) {
+            if ( e.message == "Os dados informados são inválidos, verifique e tente novamente" ) {
                 res.status( HttpStatus.BAD_REQUEST ).send( e.message );
-            } else if ( e.message == 'Usuário já existe' ) {
+            } else if ( e.message == "Este nome de usuário já existe em nossos registros. Tente outro." ) {
                 res.status( HttpStatus.UNPROCESSABLE_ENTITY ).send( e.message );
             }
         }
