@@ -1,6 +1,6 @@
 import { LoginService } from './login.service';
 import { Usuario } from '../usuario/usuario.model';
-jest.mock( '../usuario/usuario.service' ); // mocka a consulta que busca o usuário no banco
+jest.mock( '../usuario/usuario.model' ); // mocka a consulta que busca o usuário no banco
 
 
 let service: LoginService = new LoginService();
@@ -8,7 +8,7 @@ let service: LoginService = new LoginService();
 
 test( 'login --> espera-se um objeto Usuário caso as credenciais batam', async () => {
     let login: string = 'existente';
-    let senha: string = '123456';
+    let senha: string = 'test@123***';
     let usuario: Usuario = await service.login( login, senha );
     expect( usuario.id ).toBe( 69 );
 } );

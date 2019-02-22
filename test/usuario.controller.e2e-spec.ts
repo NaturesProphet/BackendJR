@@ -4,7 +4,7 @@ import * as request from 'supertest';
 import { INestApplication } from "@nestjs/common";
 import { AppModule } from "../src/app.module";
 import { UsuarioDto } from "../src/JuliusReport/usuario/usuario.dto";
-jest.mock( "../src/JuliusReport/usuario/usuario.service" );
+jest.mock( "../src/JuliusReport/usuario/usuario.model" );
 jest.mock( "../src/JuliusReport/julius-report.module" );
 const feature = loadFeature( "./test/features/usuario.feature" );
 

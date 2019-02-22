@@ -59,7 +59,7 @@ export class UsuarioService {
      * @returns Usuario
      */
     public static async getOne ( loginName: string ): Promise<Usuario> {
-        let user = await Usuario.findOne( { where: { login: loginName } } );
+        let user = await Usuario.findOne( { login: loginName } );
         if ( !user ) {
             throw new Error( 'O login informado não foi encontrado' );
         }

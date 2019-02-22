@@ -78,6 +78,11 @@
     "validate-commit-msg": "^2.14.0"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "**/*.{service.ts}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
     "verbose": true,
     "moduleFileExtensions": [
       "js",

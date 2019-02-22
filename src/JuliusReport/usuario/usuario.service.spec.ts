@@ -1,7 +1,7 @@
 import { UsuarioService } from './usuario.service';
 import { Usuario } from './usuario.model';
 import { UsuarioDto } from './usuario.dto';
-jest.mock( './usuario.service' );
+jest.mock( './usuario.model' );
 
 let service = new UsuarioService();
 
@@ -14,12 +14,7 @@ test( 'cadastraNovoUsuario(pessoa) --> espera-se o retorno de um Usuario', async
         endereco: 'avenida central 69',
         telefone: '9999 9999'
     };
-    let retorno: Usuario;
-    try {
-        retorno = await service.cadastraNovoUsuario( pessoa );
-    } catch ( e ) {
-        console.log( e )
-    }
+    let retorno = await service.cadastraNovoUsuario( pessoa );
     expect( retorno.id ).toBeGreaterThan( 0 ); //testa se o id foi gerado
     expect( retorno.login.length ).toBeGreaterThan( 2 ); // testa se o login foi gerado
     expect( retorno.getHash().length ).toBe( 60 ); // testa se a senha veio criptografada

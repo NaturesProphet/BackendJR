@@ -5,7 +5,7 @@ import { INestApplication } from "@nestjs/common";
 import { AppModule } from "../src/app.module";
 import { Usuario } from "../src/JuliusReport/usuario/usuario.model";
 
-jest.mock( "../src/JuliusReport/usuario/usuario.service" );
+jest.mock( "../src/JuliusReport/usuario/usuario.model" );
 jest.mock( "../src/JuliusReport/julius-report.module" );
 const feature = loadFeature( "./test/features/login.feature" );
 
@@ -19,7 +19,6 @@ defineFeature( feature, test => {
     } ).compile();
     app = module.createNestApplication();
     await app.init();
-    app.listen( 4000 );
   } );
 
   test( 'Usuário existe e possui apenas um veículo', ( { given, when, then } ) => {
