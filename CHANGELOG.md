@@ -2,12 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-# [0.2.0](https://github.com/NaturesProphet/BackendJR/compare/v0.1.4...v0.2.0) (2019-02-21)
+# [0.3.0](https://github.com/NaturesProphet/BackendJR/compare/v0.2.0...v0.3.0) (2019-02-22)
 
 
 ### Features
 
-* **Usuario:** endpoint POST /usuario para cadastro de novos usuários ([4d5c94c](https://github.com/NaturesProphet/BackendJR/commit/4d5c94c))
+* **Autenticação:** endpoint de autenticação básica ([5c8d722](https://github.com/NaturesProphet/BackendJR/commit/5c8d722))
 
 
 

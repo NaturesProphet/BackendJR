@@ -1,6 +1,6 @@
 {
   "name": "backend-jr",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": " Aplicação de controle financeiro veicular, alimentado pela entrada de dados do usuário.",
   "author": "Mateus Garcia Lopes",
   "license": "MIT",
