@@ -12,8 +12,9 @@ export class UsuarioService {
     /**
      * Este método é responsável por registrar novos usuáriros no sistema.
      * @param pessoa Objeto Usuario parcialmente preenchido com dados de cadastro
+     * @returns Usuario
      */
-    public async cadastraNovoUsuario( pessoa: UsuarioDto ): Promise<Usuario> {
+    public async cadastraNovoUsuario ( pessoa: UsuarioDto ): Promise<Usuario> {
 
         const test: Usuario = new Usuario(); // mocka a consulta ao banco
         test.login = 'existente'; // mocka o caso de um usuário já existente
@@ -52,4 +53,30 @@ export class UsuarioService {
             }
         }
     }
+
+    /**
+     * Este método busca um usuário no banco pelo seu login.
+     * @param loginName username do usuário
+     * @returns Usuario
+     */
+    public static async getOne ( loginName: string ): Promise<Usuario> {
+        let user: Usuario = null;
+        // mocka a consulta ao banco
+        if ( loginName == 'existente' ) {
+            user = new Usuario(); // mocka a consulta ao banco
+            user.id = 69;
+            user.nome = 'Um carinha que ja existiria se não fosse só zoeira no mock';
+            user.email = 'existente@servidor.com';
+            user.login = 'existente';
+            user.setPassword( '123456' );
+        }
+
+        if ( !user ) {
+            throw new Error( 'O login informado não foi encontrado' );
+        } else {
+            return user
+        }
+
+    }
 }
+

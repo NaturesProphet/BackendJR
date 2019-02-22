@@ -15,8 +15,9 @@ export class UsuarioService {
      * @param pessoa Interface UsuarioDto, preenchida com dados de cadastro, 
      * os campos login, senha, nome e email devem estar obrigatoriamente preenchidos 
      * e válidos, os restantes podem ser nulos se assim desejar.
+     * @returns Usuario
      */
-    public async cadastraNovoUsuario( pessoa: UsuarioDto ): Promise<Usuario> {
+    public async cadastraNovoUsuario ( pessoa: UsuarioDto ): Promise<Usuario> {
 
         const test: Usuario = await Usuario.findOne( { login: pessoa.login } );
 
@@ -50,5 +51,18 @@ export class UsuarioService {
                 throw new Error( "Os dados informados são inválidos, verifique e tente novamente" );
             }
         }
+    }
+
+    /**
+     * Este método busca um usuário no banco pelo seu login.
+     * @param loginName username do usuário
+     * @returns Usuario
+     */
+    public static async getOne ( loginName: string ): Promise<Usuario> {
+        let user = await Usuario.findOne( { where: { login: loginName } } );
+        if ( !user ) {
+            throw new Error( 'O login informado não foi encontrado' );
+        }
+        return user;
     }
 }

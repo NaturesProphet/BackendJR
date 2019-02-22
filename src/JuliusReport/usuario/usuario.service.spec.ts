@@ -60,3 +60,8 @@ test( 'cadastraNovoUsuario(pessoa) --> espera-se um erro em caso de dados invál
     expect( erro.message ).toBe( "Os dados informados são inválidos, verifique e tente novamente" );
 } );
 
+test( 'getOne(login) --> espera-se um objeto Usuário caso o login exista', async () => {
+    let login = 'existente';
+    let usuario: Usuario = await UsuarioService.getOne( login );
+    expect( usuario.id ).toBe( 69 );
+} );

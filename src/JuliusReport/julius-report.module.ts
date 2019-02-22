@@ -3,6 +3,8 @@ import { BancoConfig } from '../common/configs/banco.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { usuarioController } from './usuario/usuario.controller';
 import { UsuarioService } from './usuario/usuario.service';
+import { LoginController } from './login/login.controller';
+import { LoginService } from './login/login.service';
 const database = new BancoConfig();
 @Module(
     {
@@ -17,8 +19,8 @@ const database = new BancoConfig();
             synchronize: database.sync,
         } ), JuliusReportModule ],
 
-        controllers: [ usuarioController ],
-        providers: [ UsuarioService ],
+        controllers: [ usuarioController, LoginController ],
+        providers: [ UsuarioService, LoginService ],
     }
 )
 export class JuliusReportModule { }

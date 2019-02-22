@@ -4,11 +4,24 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 const pacote = require( '../package.json' ); // dados do projeto
 const ambiente = process.env.NODE_ENV; // informa se é ambiente DEV ou PROD
 let porta = process.env.PORT || 3000;
+import cookieSession = require( 'cookie-session' );
 /**
  * procedimento que configura e inicializa a aplicação inteira
  */
-async function bootstrap() {
+async function bootstrap () {
   const app = await NestFactory.create( AppModule );
+
+
+  // configura o cookie da seção
+  app.use( cookieSession( {
+    name: 'JuliusReport',
+    keys: [ process.env.BISCOITO || 'julius' ],
+    // Cookie Options
+    maxAge: 60 * 60 * 1000,
+  } ) );
+
+
+
   let options; // seleciona o schema http fora de prod e https em prod
   if ( ambiente == 'production' ) {
     options = new DocumentBuilder()

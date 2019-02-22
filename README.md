@@ -31,6 +31,7 @@ DB_SCHEMA           # Nome do banco de dados. Default juliusreport
 DB_ORM_SYNC         # Liga ou desliga o sync do orm. Default false
 NODE_ENV            # Ambiente de execução. Ajuste para 'production' em produção
 PORT                # Porta onde a API vai ouvir. Default 3000
+BISCOITO            # chave do cookie
 ```
 
 ## Instalação das dependências

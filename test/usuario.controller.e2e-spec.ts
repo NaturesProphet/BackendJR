@@ -18,7 +18,6 @@ defineFeature( feature, test => {
     } ).compile();
     app = module.createNestApplication();
     await app.init();
-    app.listen( 4000 );
   } );
 
   test( 'Os dados informados são válidos', ( { given, when, then } ) => {
@@ -115,7 +114,7 @@ defineFeature( feature, test => {
       response = await request( app.getHttpServer() ).post( endpoint ).send( objeto );
     } );
 
-    then( /^recebo uma mensagem de erro com um código (.*) na Resposta$/, ( arg0 ) => {
+    then( 'recebo uma mensagem de erro com um código 422 na Resposta', () => {
       expect( response.status ).toBe( 422 );
       expect( response.text ).toBe( "Este nome de usuário já existe em nossos registros. Tente outro." );
     } );

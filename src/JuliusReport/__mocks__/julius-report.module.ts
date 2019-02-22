@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
-import { BancoConfig } from '../../common/configs/banco.config';
 import { usuarioController } from '../usuario/usuario.controller';
 import { UsuarioService } from '../usuario/usuario.service';
-const database = new BancoConfig();
+import { LoginController } from '../../JuliusReport/login/login.controller';
+import { LoginService } from '../../JuliusReport/login/login.service';
+
 @Module(
     {
         imports: [],
-        controllers: [ usuarioController ],
-        providers: [ UsuarioService ],
+        controllers: [ usuarioController, LoginController ],
+        providers: [ UsuarioService, LoginService ],
     }
 )
 export class JuliusReportModule { }
