@@ -3,7 +3,7 @@ const db_port: number = parseInt( process.env.DB_PORT ) || 5432;
 const db_username = process.env.DB_USER || 'julius';
 const db_password = process.env.DB_PASSWORD || 'juliuspass';
 const db_schema = process.env.DB_SCHEMA || 'juliusreport';
-const orm_sync = ( process.env.DB_ORM_SYNC === 'true' ) || true
+const orm_sync = ( process.env.DB_ORM_SYNC === 'true' )
 
 export class BancoConfig {
     constructor(

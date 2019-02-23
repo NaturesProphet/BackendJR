@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as EmailValidator from 'email-validator';
 import { Usuario } from './usuario.model';
 import { UsuarioDto } from './usuario.dto';
+import { Veiculo } from '../../JuliusReport/veiculo/veiculo.model';
 
 
 @Injectable()
@@ -64,5 +65,14 @@ export class UsuarioService {
             throw new Error( 'O login informado não foi encontrado' );
         }
         return user;
+    }
+
+    /**
+     * Este método retorna um array de veículos que pertencem ao usuário informado.
+     * @param usuario proprietário dos veículos
+     * @returns array de veículos
+     */
+    public async getVeiculos ( usuario: Usuario ): Promise<Veiculo[]> {
+        return await usuario.getVeiculos();
     }
 }

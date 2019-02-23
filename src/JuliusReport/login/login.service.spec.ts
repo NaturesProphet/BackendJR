@@ -6,7 +6,7 @@ jest.mock( '../usuario/usuario.model' ); // mocka a consulta que busca o usuári
 let service: LoginService = new LoginService();
 
 
-test( 'login --> espera-se um objeto Usuário caso as credenciais batam', async () => {
+test( 'login --> retorna um Usuário caso as credenciais batam', async () => {
     let login: string = 'existente';
     let senha: string = 'test@123***';
     let usuario: Usuario = await service.login( login, senha );
@@ -14,7 +14,7 @@ test( 'login --> espera-se um objeto Usuário caso as credenciais batam', async 
 } );
 
 
-test( 'login --> espera-se um erro 401 caso as credenciais não batam', async () => {
+test( 'login --> lança um erro 401 caso as credenciais não batam', async () => {
     let login: string = 'existente';
     let senha: string = '654321';
     let erro;
@@ -27,7 +27,7 @@ test( 'login --> espera-se um erro 401 caso as credenciais não batam', async ()
 
 } );
 
-test( 'login --> espera-se uma mensagem de erro caso o login não exista', async () => {
+test( 'login --> lança um erro caso o login não exista', async () => {
     let login: string = 'QuemSouEu?';
     let senha: string = 'senhagrandepracaramba';
     let erro;

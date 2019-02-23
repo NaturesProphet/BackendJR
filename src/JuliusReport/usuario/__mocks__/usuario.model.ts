@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, Index } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, Index, OneToMany } from "typeorm";
 import { ApiModelProperty } from "@nestjs/swagger";
 import * as bcrypt from 'bcryptjs';
+import { Veiculo } from "../../../JuliusReport/veiculo/veiculo.model";
 
 @Entity()
 export class Usuario {
@@ -42,6 +43,9 @@ export class Usuario {
     @ApiModelProperty()
     private passwordHash: string;
 
+    @OneToMany( type => Veiculo, veiculos => Veiculo )
+    veiculos: Veiculo[];
+
 
     /**
      * Método que criptografa a senha do usuário antes de armazena-la no banco
@@ -73,11 +77,19 @@ export class Usuario {
         usuario.setPassword( 'test@123***' );
         usuario.id = 69;
         usuario.nome = 'mock jr';
+        usuario.login = 'existente';
+        usuario.telefone = '007 007';
+        usuario.endereco = 'rua 47 esquina com 71'
         if ( obj.login == 'existente' ) {
-            usuario.login = 'existente';
             return usuario;
         } else {
             return null;
         }
+    }
+
+
+    // mocka a consulta ao banco de dados
+    public async getVeiculos (): Promise<Veiculo[]> {
+        return this.veiculos;
     }
 }
