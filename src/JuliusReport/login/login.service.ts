@@ -20,6 +20,12 @@ export class LoginService {
         // a comparação entre senha e hash retorna true se forem compatíveis
         const souEu: boolean = await bcrypt.compare( pass, usuario.getHash() );
         if ( souEu ) {
+            usuario.veiculos = await usuario.getVeiculos();
+            if ( usuario.veiculos.length == 1 ) {
+                usuario.veiculoDefault = usuario.veiculos[ 0 ];
+            } else {
+                usuario.veiculoDefault = null;
+            }
             return usuario;
         } else {
             throw new UnauthorizedException();

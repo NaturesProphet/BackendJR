@@ -3,7 +3,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import * as request from 'supertest';
 import { INestApplication } from "@nestjs/common";
 import { AppModule } from "../src/app.module";
-import { Usuario } from "../src/JuliusReport/usuario/usuario.model";
+
 
 jest.mock( "../src/JuliusReport/usuario/usuario.model" );
 jest.mock( "../src/JuliusReport/julius-report.module" );
@@ -21,40 +21,30 @@ defineFeature( feature, test => {
     await app.init();
   } );
 
-  test( 'Usuário existe e possui apenas um veículo', ( { given, when, then } ) => {
-    let usuario: Usuario;
+  test( 'Usuário existe', ( { given, when, then } ) => {
     let response: any;
     let endpoint: string;
+    let payload: any;
     given( 'Quero acessar o sistema via login/senha', () => {
-      // veiculos ainda não implementados. aguardando implementação
+      // define o endpoint adequado para atender a intenção descrita
+      endpoint = '/login';
     } );
 
-    when( 'eu me autenticar', () => {
-      // veiculos ainda não implementados. aguardando implementação
+    when( 'eu me autenticar', async () => {
+      // monta o payload de autenticação fake a ser enviado
+      // ----------------------------------------------
+      payload = { "login": "existente", "senha": "test@123***" }
+      // ----------------------------------------------
+      // e então simula o envio
+      response = await request( app.getHttpServer() ).post( endpoint ).send( payload );
     } );
 
-    then( "recebo os dados do meu perfil e veículo na seção com um código 200 na resposta", () => {
-      // veiculos ainda não implementados. aguardando implementação
+    then( "recebo um cookie com os dados do meu perfil com um código 200 na resposta", () => {
+      expect( response.status ).toBe( 200 );
+      expect( response.text ).toBe( 'autorizado' );
     } );
   } );
 
-
-  test( 'Usuário existe e possui mais que um veículo ou nenhum', ( { given, when, then } ) => {
-    let usuario: Usuario;
-    let response: any;
-    let endpoint: string;
-    given( 'Quero acessar o sistema via login/senha', () => {
-      // veiculos ainda não implementados. aguardando implementação
-    } );
-
-    when( 'eu me autenticar', () => {
-      // veiculos ainda não implementados. aguardando implementação
-    } );
-
-    then( "recebo apenas os dados do meu perfil na seção com um código 200 na resposta", ( arg0 ) => {
-      // veiculos ainda não implementados. aguardando implementação
-    } );
-  } );
 
 
   test( 'Usuário NÃO existe', ( { given, and, when, then } ) => {
@@ -62,14 +52,18 @@ defineFeature( feature, test => {
     let endpoint: string;
     let payload: any;
     given( 'Quero acessar o sistema via login/senha', () => {
+      // define o endpoint adequado para atender a intenção descrita
       endpoint = '/login';
     } );
 
     and( 'forneci um login que não existe', () => {
+      // monta o payload de autenticação fake a ser enviado
+      // ----------------------------------------------
       payload = { "login": "MundialDoPalmeiras", "senha": "123321" }
     } );
 
     when( 'eu tentar me autenticar', async () => {
+      // e então simula o envio
       response = await request( app.getHttpServer() ).post( endpoint ).send( payload );
     } );
 
@@ -84,14 +78,18 @@ defineFeature( feature, test => {
     let endpoint: string;
     let payload: any;
     given( 'Quero acessar o sistema via login/senha', () => {
+      // define o endpoint adequado para atender a intenção descrita
       endpoint = '/login';
     } );
 
     and( 'forneci uma senha incompatível', () => {
+      // monta o payload de autenticação fake a ser enviado
+      // ----------------------------------------------
       payload = { "login": "existente", "senha": "Windows" }
     } );
 
     when( 'eu tentar me autenticar', async () => {
+      // e então simula o envio
       response = await request( app.getHttpServer() ).post( endpoint ).send( payload );
     } );
 

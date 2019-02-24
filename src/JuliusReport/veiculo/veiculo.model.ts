@@ -17,7 +17,7 @@ export class Veiculo extends BaseEntity {
     @ApiModelProperty()
     atualizadoem: Date;
 
-    @Column()
+    @Column( { unique: true } )
     placa: string;
 
     @Column()

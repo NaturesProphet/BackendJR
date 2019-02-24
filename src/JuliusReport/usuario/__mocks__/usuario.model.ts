@@ -46,6 +46,8 @@ export class Usuario {
     @OneToMany( type => Veiculo, veiculos => Veiculo )
     veiculos: Veiculo[];
 
+    veiculoDefault: Veiculo; // campo que recebe o veículo na seção
+
 
     /**
      * Método que criptografa a senha do usuário antes de armazena-la no banco
@@ -80,10 +82,24 @@ export class Usuario {
         usuario.login = 'existente';
         usuario.telefone = '007 007';
         usuario.endereco = 'rua 47 esquina com 71'
+        usuario.veiculos = []
         if ( obj.login == 'existente' ) {
             return usuario;
-        } else {
-            return null;
+        } else if ( obj.login == 'existente1' ) {
+            usuario.login = 'existente1';
+            let veiculo1 = new Veiculo();
+            veiculo1.id = 1;
+            usuario.veiculos.push( veiculo1 );
+            return usuario;
+        } else if ( obj.login == 'existente2' ) {
+            usuario.login = 'existente2';
+            let veiculo1 = new Veiculo();
+            veiculo1.id = 1;
+            let veiculo2 = new Veiculo();
+            veiculo1.id = 2;
+            usuario.veiculos.push( veiculo1 );
+            usuario.veiculos.push( veiculo2 );
+            return usuario;
         }
     }
 

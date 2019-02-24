@@ -17,7 +17,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:e2e": "jest --config ./test/jest-e2e.json --env=node",
     "commit": "git-cz",
     "release": "standard-version",
     "postgre:persistent": "docker run --name postgre-srv -p 5432:5432 -e POSTGRES_USER=julius -e POSTGRES_PASSWORD=juliuspass -e POSTGRES_DB=juliusreport -v /DOCKER-VOLUMES/juliusreport/postgre-data:/var/lib/postgresql -v /DOCKER-VOLUMES/juliusreport/postgre-data/data:/var/lib/postgresql/data -d postgres:alpine",
@@ -53,11 +53,11 @@
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.2.2",
-    "typeorm": "^0.2.13",
-    "typescript": "^3.0.1",
     "ts-loader": "^4.4.2",
     "ts-node": "^7.0.1",
-    "tsconfig-paths": "^3.5.0"
+    "tsconfig-paths": "^3.5.0",
+    "typeorm": "^0.2.13",
+    "typescript": "^3.0.1"
   },
   "devDependencies": {
     "@nestjs/testing": "^5.1.0",

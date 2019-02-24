@@ -33,6 +33,7 @@ export class LoginController {
         try {
             usuario = await this.service.login( auth.login, auth.senha );
             res.clearCookie( 'JuliusReport', '*' ); // limpa eventuais cookies anteriores
+            req.session = {}; // inicializa uma seção nova.
             req.session.usuario = usuario; // coloca o usuario autenticado no cookie da seção
             return res.status( 200 ).send( 'autorizado' );
         } catch ( e ) {

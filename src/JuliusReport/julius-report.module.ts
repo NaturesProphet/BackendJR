@@ -5,6 +5,8 @@ import { usuarioController } from './usuario/usuario.controller';
 import { UsuarioService } from './usuario/usuario.service';
 import { LoginController } from './login/login.controller';
 import { LoginService } from './login/login.service';
+import { VeiculoController } from './veiculo/veiculo.controller';
+import { VeiculoService } from './veiculo/veiculo.service';
 const database = new BancoConfig();
 @Module(
     {
@@ -16,11 +18,11 @@ const database = new BancoConfig();
             password: database.password,
             database: database.schema,
             entities: [ __dirname + '/**/*.model{.ts,.js}' ],
-            synchronize: database.sync,
+            synchronize: database.sync
         } ), JuliusReportModule ],
 
-        controllers: [ usuarioController, LoginController ],
-        providers: [ UsuarioService, LoginService ],
+        controllers: [ usuarioController, LoginController, VeiculoController ],
+        providers: [ UsuarioService, LoginService, VeiculoService ],
     }
 )
 export class JuliusReportModule { }

@@ -51,6 +51,9 @@ export class Veiculo {
     }
 
     public static find ( options ) {
+        if ( options.placa == 'placa existente' ) {
+            return [ new Veiculo() ]
+        }
         if ( options.usuario_id == 69 ) {
             let veiculo = new Veiculo();
             veiculo.cor = 'preto';

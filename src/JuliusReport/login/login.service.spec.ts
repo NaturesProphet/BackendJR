@@ -6,11 +6,22 @@ jest.mock( '../usuario/usuario.model' ); // mocka a consulta que busca o usuári
 let service: LoginService = new LoginService();
 
 
-test( 'login --> retorna um Usuário caso as credenciais batam', async () => {
+test( 'login --> retorna um Usuário com veículo default caso as credenciais batam', async () => {
+    let login: string = 'existente1';
+    let senha: string = 'test@123***';
+    let usuario: Usuario = await service.login( login, senha );
+    expect( usuario.id ).toBe( 69 );
+    expect( usuario.veiculos.length ).toBeGreaterThan( 0 );
+    expect( usuario.veiculoDefault ).not.toBeNull();
+} );
+
+test( 'login --> retorna um Usuário sem veículo default caso as credenciais batam', async () => {
     let login: string = 'existente';
     let senha: string = 'test@123***';
     let usuario: Usuario = await service.login( login, senha );
     expect( usuario.id ).toBe( 69 );
+    expect( usuario.veiculos.length ).toBe( 0 );
+    expect( usuario.veiculoDefault ).toBeNull();
 } );
 
 
