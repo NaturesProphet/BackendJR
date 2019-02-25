@@ -2,13 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [0.4.1](https://github.com/NaturesProphet/BackendJR/compare/v0.4.0...v0.4.1) (2019-02-25)
-
-
-### Bug Fixes
-
-* **Usuario:** Decorator perdido num mock removido ([a1abd27](https://github.com/NaturesProphet/BackendJR/commit/a1abd27))
-* **Veiculo:** Decorator perdido num mock removido ([53f8d6b](https://github.com/NaturesProphet/BackendJR/commit/53f8d6b))
+## [0.4.2](https://github.com/NaturesProphet/BackendJR/compare/v0.4.1...v0.4.2) (2019-02-25)
 
 
 
