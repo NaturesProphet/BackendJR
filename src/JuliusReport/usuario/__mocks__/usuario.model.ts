@@ -83,6 +83,21 @@ export class Usuario {
 
     // mocka a consulta ao banco de dados
     public async getVeiculos (): Promise<Veiculo[]> {
+        if ( this.login == 'existente1' ) {
+            let carro: Veiculo = new Veiculo();
+            carro.anoFrabricacao = 1973;
+            carro.anoModelo = 1973;
+            carro.cor = 'preto';
+            carro.dataregistro = new Date();
+            carro.id = 69;
+            carro.marca = 'WolksWagen';
+            carro.modelo = "Fuscão";
+            carro.observacoes = "Carro de corrida";
+            carro.placa = "KKK 6969";
+            carro.usuario_id = 69;
+            this.veiculos = [ carro ];
+            return this.veiculos;
+        }
         return this.veiculos;
     }
 }
