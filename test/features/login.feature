@@ -6,7 +6,7 @@ Endpoint que autentica o usuário no sistema e armazena o seu objeto na seção
 Cenário: Usuário existe
 Dado Quero acessar o sistema via login/senha
 Quando eu me autenticar
-Então recebo um cookie com os dados do meu perfil com um código 200 na resposta
+Então recebo um token de autenticação com meus dados criptografados e um status 200
 
 
 Cenário: Usuário NÃO existe

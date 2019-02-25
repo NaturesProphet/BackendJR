@@ -39,9 +39,9 @@ defineFeature( feature, test => {
       response = await request( app.getHttpServer() ).post( endpoint ).send( payload );
     } );
 
-    then( "recebo um cookie com os dados do meu perfil com um código 200 na resposta", () => {
+    then( "recebo um token de autenticação com meus dados criptografados e um status 200", () => {
       expect( response.status ).toBe( 200 );
-      expect( response.text ).toBe( 'autorizado' );
+      expect( response.text.length ).toBe( 431 );
     } );
   } );
 

@@ -32,6 +32,8 @@ DB_ORM_SYNC         # Liga ou desliga o sync do orm. Default false
 NODE_ENV            # Ambiente de execução. Ajuste para 'production' em produção
 PORT                # Porta onde a API vai ouvir. Default 3000
 BISCOITO            # chave do cookie
+API_PRIVATE_KEY     # chave da api para descriptografar tokens
+VALIDADE_TOKEN      # Tempo de validade do token de autenticação: Default 1h
 ```
 
 ## Instalação das dependências

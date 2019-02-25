@@ -3,6 +3,8 @@ import { ApiOperation, ApiResponse, ApiUseTags } from '@nestjs/swagger';
 import { LoginService } from './login.service';
 import { Usuario } from '../../JuliusReport/usuario/usuario.model';
 import { loginPayload } from './loginPayload.dto';
+import * as jwt from 'jsonwebtoken';
+import { privateKey, tempoSessao } from '../../common/configs/api.conf';
 
 @ApiUseTags( 'Autenticação' )
 @Controller( 'login' )
@@ -13,7 +15,7 @@ export class LoginController {
     @ApiOperation( { title: 'Autenticação' } )
     @ApiResponse( {
         status: 200,
-        description: 'O usuário foi autenticado e seus dados estão no cookie da seção',
+        description: 'O usuário foi autenticado e recebeu um token válido',
     } )
     @ApiResponse( {
         status: 401,
@@ -32,10 +34,11 @@ export class LoginController {
         let usuario: Usuario;
         try {
             usuario = await this.service.login( auth.login, auth.senha );
-            res.clearCookie( 'JuliusReport', '*' ); // limpa eventuais cookies anteriores
-            req.session = {}; // inicializa uma seção nova.
-            req.session.usuario = usuario; // coloca o usuario autenticado no cookie da seção
-            return res.status( 200 ).send( 'autorizado' );
+            jwt.sign( { usuario }, privateKey, { expiresIn: tempoSessao }, ( err, token ) => {
+                if ( err ) { console.log( err ) }
+                res.send( token );
+            } );
+
         } catch ( e ) {
             if ( e.status == 401 ) {
                 res.status( 401 ).send( 'Autorização negada. As credenciais não bateram' );
