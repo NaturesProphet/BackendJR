@@ -1,5 +1,5 @@
 import { Controller, Post, Res, Body, Req, Catch } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiUseTags, } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiUseTags, ApiBearerAuth, } from '@nestjs/swagger';
 import { VeiculoService } from './veiculo.service';
 import { VeiculoDto } from './veiculo.dto';
 import * as jwt from 'jsonwebtoken';
@@ -8,7 +8,7 @@ import { privateKey } from '../../common/configs/api.conf';
 @Controller( 'veiculo' )
 export class VeiculoController {
     constructor( private readonly service: VeiculoService ) { }
-
+    @ApiBearerAuth()
     @Post()
     @ApiOperation( { title: 'Cadastro de novos veículos' } )
     @ApiResponse( {
@@ -30,10 +30,16 @@ export class VeiculoController {
 
 
     public async salvar ( @Body() dto: VeiculoDto, @Res() res, @Req() req, ) {
+        // pega o valor da chave 'authorization' nos headers da requisição
         const header = req.headers[ 'authorization' ];
         if ( typeof header !== 'undefined' ) {
+            // verifica se tem a palavra 'Bearer ' antes do token e ajusta ao caso
             const bearer = header.split( ' ' );
-            const token = bearer[ 1 ];
+            let token = bearer[ 1 ];
+            if ( token == undefined ) {
+                token = header;
+            }
+            // coloca o token no objeto de requisição e segue pro service
             req.token = token;
         } else {
             res.status( 403 ).send( `Não autorizado. ` );
