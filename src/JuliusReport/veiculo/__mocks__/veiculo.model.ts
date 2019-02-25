@@ -1,35 +1,22 @@
-import { PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, BaseEntity, Entity, CreateDateColumn, UpdateDateColumn } from "typeorm";
-import { ApiModelProperty } from "@nestjs/swagger";
-
-@Entity()
 export class Veiculo {
 
-
     id: number;
-
 
     dataregistro: Date;
 
     atualizadoem: Date;
 
-
     placa: string;
-
 
     cor: string;
 
-
     marca: string;
-
 
     modelo: string;
 
-
     anoFrabricacao: number;
 
-
     anoModelo: number;
-
 
     observacoes: string;
 
