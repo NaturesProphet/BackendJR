@@ -2,12 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [0.5.2](https://github.com/NaturesProphet/BackendJR/compare/v0.5.1...v0.5.2) (2019-02-27)
-
-
-### Bug Fixes
-
-* **Typeorm:** Problema de dependencias resolvido ([38ade85](https://github.com/NaturesProphet/BackendJR/commit/38ade85))
+## [0.5.3](https://github.com/NaturesProphet/BackendJR/compare/v0.5.2...v0.5.3) (2019-02-27)
 
 
 
