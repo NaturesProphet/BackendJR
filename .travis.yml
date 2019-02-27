@@ -12,9 +12,6 @@ addons:
 script:
 # instalar dependências
 - npm install
-- npm i highlight.js@9.14.2 -D
-- npm i typeorm
-- npm i @nestjs/typeorm
 # executar os testes
 - npm run test
 - npm run test:e2e
