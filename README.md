@@ -4,10 +4,7 @@
 <p align="center">
    Uma aplicação desenvolvida em <a href="https://github.com/Microsoft/TypeScript">Typescript</a> usando <a href="http://nestjs.com/">Nestjs Framework</a>
 </p>
-<p aligh="center">
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/dashboard?id=backend-jr)
-
-
+<p align="center">
 <a href="https://sonarcloud.io/dashboard?id=backend-jr" target="blank"><img src="https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg" alt="Sonar Cloud" /></a>
 </p>
 
