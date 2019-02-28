@@ -7,7 +7,21 @@ let service = new VeiculoService();
 
 
 
-test( 'salva(Veiculo) --> salva e retorna um Veiculo', async () => {
+test( 'salva(Veiculo) --> salva e retorna um Veiculo com observações', async () => {
+    let veiculo = new VeiculoDto();
+    veiculo.cor = 'preto';
+    veiculo.marca = 'WolksWagen';
+    veiculo.modelo = 'fuscão';
+    veiculo.placa = "KGB-6666";
+    veiculo.usuario_id = 69;
+    veiculo.anoFrabricacao = 1972;
+    veiculo.anoModelo = 1973;
+    veiculo.observacoes = "Carro de corrida"
+    let veiculoSalvo = await service.salva( veiculo );
+    expect( veiculoSalvo.id ).toBeGreaterThan( 0 );
+} );
+
+test( 'salva(Veiculo) --> salva e retorna um Veiculo sem observações', async () => {
     let veiculo = new VeiculoDto();
     veiculo.cor = 'preto';
     veiculo.marca = 'WolksWagen';

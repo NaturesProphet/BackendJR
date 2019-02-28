@@ -33,6 +33,9 @@ export class VeiculoService {
 
             let teste = await Veiculo.find( { placa: veiculo.placa } );
             if ( teste.length == 0 ) {
+                if ( veiculo.observacoes ) {
+                    novo.observacoes = veiculo.observacoes;
+                }
                 return await Veiculo.save( novo );
             } else {
                 throw new Error( "Esta placa já existe." );
