@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [0.5.3](https://github.com/NaturesProphet/BackendJR/compare/v0.5.2...v0.5.3) (2019-02-27)
+## [0.5.4](https://github.com/NaturesProphet/BackendJR/compare/v0.5.3...v0.5.4) (2019-02-28)
+
+
+### Bug Fixes
+
+* **ts:** path removido ([f1114eb](https://github.com/NaturesProphet/BackendJR/commit/f1114eb))
+* **Veiculo:** campo observações não estava sendo salvo ([db2f979](https://github.com/NaturesProphet/BackendJR/commit/db2f979))
 
 
 
