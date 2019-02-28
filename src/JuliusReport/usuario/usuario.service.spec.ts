@@ -25,6 +25,23 @@ test( 'cadastraNovoUsuario(pessoa) --> retorna um Usuario', async () => {
 } );
 
 
+test( 'cadastraNovoUsuario(pessoa) --> retorna um Usuario', async () => {
+    let pessoa: UsuarioDto = {
+        email: 'usuario@servidor.dominio',
+        nome: 'Testador',
+        login: 'test',
+        senha: 'test@123***',
+        endereco: null,
+        telefone: null
+    };
+    let retorno = await service.cadastraNovoUsuario( pessoa );
+    expect( retorno.id ).toBeGreaterThan( 0 ); //testa se o id foi gerado
+    expect( retorno.login ).toBe( 'test' ); // testa se o login foi gerado
+    expect( retorno.getHash().length ).toBe( 60 ); // testa se a senha veio criptografada
+    expect( retorno.nome ).toBe( 'Testador' );
+} );
+
+
 test( 'cadastraNovoUsuario(pessoa) --> lança um erro em caso de o usuário já existir', async () => {
     let pessoa: UsuarioDto = {
         email: 'testes@teste.com',
