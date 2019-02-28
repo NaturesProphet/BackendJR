@@ -4,8 +4,11 @@
 <p align="center">
    Uma aplicação desenvolvida em <a href="https://github.com/Microsoft/TypeScript">Typescript</a> usando <a href="http://nestjs.com/">Nestjs Framework</a>
 </p>
+<p aligh="center">
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/dashboard?id=backend-jr)
+</p>
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)[![Build Status](https://travis-ci.org/NaturesProphet/BackendJR.svg?branch=DEV)](https://travis-ci.org/NaturesProphet/BackendJR)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)[![Build Status](https://travis-ci.org/NaturesProphet/BackendJR.svg?branch=DEV)](https://travis-ci.org/NaturesProphet/BackendJR)[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=backend-jr&metric=bugs)](https://sonarcloud.io/dashboard?id=backend-jr)[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=backend-jr&metric=code_smells)](https://sonarcloud.io/dashboard?id=backend-jr)[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=backend-jr&metric=coverage)](https://sonarcloud.io/dashboard?id=backend-jr)[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=backend-jr&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=backend-jr)[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=backend-jr&metric=security_rating)](https://sonarcloud.io/dashboard?id=backend-jr)[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=backend-jr&metric=sqale_index)](https://sonarcloud.io/dashboard?id=backend-jr)[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=backend-jr&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=backend-jr)
 
 # JuliusReport Web-API
 
