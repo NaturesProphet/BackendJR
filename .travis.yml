@@ -18,6 +18,7 @@ script:
 - npm run test:cov
 # análise de qualidade de código
 - sonar-scanner
+- node sonarBreaker.js
 
 # se o commit for tageado e o script acima passar, executa automaticamente o deploy no Heroku
 deploy:
