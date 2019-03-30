@@ -7,6 +7,8 @@ import { LoginController } from './login/login.controller';
 import { LoginService } from './login/login.service';
 import { VeiculoController } from './veiculo/veiculo.controller';
 import { VeiculoService } from './veiculo/veiculo.service';
+import { PostoService } from './posto/posto.service';
+import { PostoController } from './posto/posto.controller';
 const database = new BancoConfig();
 @Module(
     {
@@ -21,8 +23,8 @@ const database = new BancoConfig();
             synchronize: database.sync
         } ), JuliusReportModule ],
 
-        controllers: [ usuarioController, LoginController, VeiculoController ],
-        providers: [ UsuarioService, LoginService, VeiculoService ],
+        controllers: [ usuarioController, LoginController, VeiculoController, PostoController ],
+        providers: [ UsuarioService, LoginService, VeiculoService, PostoService ],
     }
 )
 export class JuliusReportModule { }
