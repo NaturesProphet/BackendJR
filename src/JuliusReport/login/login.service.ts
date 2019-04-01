@@ -37,19 +37,18 @@ export class LoginService {
 
     /**
      * Este método verifica se o o usuário está autenticado
-     * @param req requisição http integral
+     * @param authorization token de acesso
      * @returns Objeto com o usuário logado e seus dados de seção
      */
-    static async getAuthentication ( @Req() req ): Promise<any> {
+    static async getAuthentication ( authorization: string ): Promise<any> {
         // pega o valor da chave 'authorization' nos headers da requisição
-        const header = req.headers[ 'authorization' ];
 
-        if ( typeof header !== 'undefined' ) {
+        if ( typeof authorization !== 'undefined' ) {
             // verifica se tem a palavra 'Bearer ' antes do token e ajusta ao caso
-            const bearer = header.split( ' ' );
+            const bearer = authorization.split( ' ' );
             let token = bearer[ 1 ];
             if ( token == undefined ) {
-                token = header;
+                token = authorization;
             }
 
             return await jwt.verify( token, privateKey );

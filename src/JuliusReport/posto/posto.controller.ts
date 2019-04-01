@@ -37,7 +37,7 @@ export class PostoController {
 
     public async salvar ( @Body() dto: PostoDto, @Res() res, @Req() req, ) {
 
-        await LoginService.getAuthentication( req );
+        await LoginService.getAuthentication( req.headers[ 'authorization' ] );
 
         try {
             let posto = await this.service.salva( dto );
@@ -71,7 +71,7 @@ export class PostoController {
 
     public async listarPostos ( @Res() res, @Req() req ) {
 
-        await LoginService.getAuthentication( req );
+        await LoginService.getAuthentication( req.headers[ 'authorization' ] );
         try {
             let postos: Posto[] = await this.service.getPostos();
             res.status( 200 ).send( postos );
