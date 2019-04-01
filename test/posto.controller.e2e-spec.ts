@@ -108,16 +108,14 @@ defineFeature( feature, test => {
             body.local = 'avenida 7';
             body.nome = 'posto malaquias';
             response = await request( app.getHttpServer() ).post( endpoint )
-                .send( body ).set( { authorization: `Bearer 1234` } );;
+                .send( body );
         } );
 
         then( 'recebo uma mensagem de erro com um código 401 na Resposta', () => {
             expect( response.status ).toBe( 401 );
-            expect( response.text ).toBe( 'Não autenticado' );
+            expect( response.body.message ).toBe( 'Não autenticado' );
         } );
     } );
-
-
 
 
 

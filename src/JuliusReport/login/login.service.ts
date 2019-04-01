@@ -1,7 +1,9 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException, Req } from '@nestjs/common';
 import { UsuarioService } from '../usuario/usuario.service';
 import * as bcrypt from 'bcryptjs';
 import { Usuario } from 'JuliusReport/usuario/usuario.model';
+import * as jwt from 'jsonwebtoken';
+import { privateKey } from '../../common/configs/api.conf';
 
 @Injectable()
 export class LoginService {
@@ -30,5 +32,31 @@ export class LoginService {
         } else {
             throw new UnauthorizedException();
         }
+    }
+
+
+    /**
+     * Este método verifica se o o usuário está autenticado
+     * @param req requisição http integral
+     * @returns Objeto com o usuário logado e seus dados de seção
+     */
+    static async getAuthentication ( @Req() req ): Promise<any> {
+        // pega o valor da chave 'authorization' nos headers da requisição
+        const header = req.headers[ 'authorization' ];
+
+        if ( typeof header !== 'undefined' ) {
+            // verifica se tem a palavra 'Bearer ' antes do token e ajusta ao caso
+            const bearer = header.split( ' ' );
+            let token = bearer[ 1 ];
+            if ( token == undefined ) {
+                token = header;
+            }
+
+            return await jwt.verify( token, privateKey );
+
+        } else {
+            throw new UnauthorizedException( `Não autenticado` );
+        }
+
     }
 }
