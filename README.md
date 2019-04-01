@@ -11,7 +11,7 @@
 <a href="https://sonarcloud.io/dashboard?id=backend-jr" target="blank"><img src="https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg" alt="Sonar Cloud" /></a>
 </p>
 
-![GitHub](https://img.shields.io/github/license/naturesprophet/backendjr.svg)![GitHub repo size](https://img.shields.io/github/repo-size/naturesprophet/backendjr.svg)
+![GitHub](https://img.shields.io/github/license/naturesprophet/backendjr.svg)![GitHub repo size](https://img.shields.io/github/repo-size/naturesprophet/backendjr.svg)![GitHub last commit](https://img.shields.io/github/last-commit/naturesprophet/backendjr.svg)![GitHub package.json version](https://img.shields.io/github/package-json/v/naturesprophet/backendjr.svg)![GitHub issues](https://img.shields.io/github/issues/naturesprophet/backendjr.svg)![GitHub closed issues](https://img.shields.io/github/issues-closed/naturesprophet/backendjr.svg)
 
 ## Descrição
 
