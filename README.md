@@ -11,7 +11,7 @@
 <a href="https://sonarcloud.io/dashboard?id=backend-jr" target="blank"><img src="https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg" alt="Sonar Cloud" /></a>
 </p>
 
-![GitHub](https://img.shields.io/github/license/naturesprophet/backendjr.svg)
+![GitHub](https://img.shields.io/github/license/naturesprophet/backendjr.svg)![GitHub repo size](https://img.shields.io/github/repo-size/naturesprophet/backendjr.svg)
 
 ## Descrição
 
