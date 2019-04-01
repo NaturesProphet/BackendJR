@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { BancoConfig } from '../common/configs/banco.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { usuarioController } from './usuario/usuario.controller';
 import { UsuarioService } from './usuario/usuario.service';
@@ -9,18 +8,23 @@ import { VeiculoController } from './veiculo/veiculo.controller';
 import { VeiculoService } from './veiculo/veiculo.service';
 import { PostoService } from './posto/posto.service';
 import { PostoController } from './posto/posto.controller';
-const database = new BancoConfig();
+import {
+    db_host, db_port, db_username,
+    db_password, db_schema, orm_sync
+} from '../common/configs/banco.config';
+
+
 @Module(
     {
         imports: [ TypeOrmModule.forRoot( {
-            type: database.type,
-            host: database.host,
-            port: database.port,
-            username: database.login,
-            password: database.password,
-            database: database.schema,
+            type: 'postgres',
+            host: db_host,
+            port: db_port,
+            username: db_username,
+            password: db_password,
+            database: db_schema,
             entities: [ __dirname + '/**/*.model{.ts,.js}' ],
-            synchronize: database.sync
+            synchronize: orm_sync
         } ), JuliusReportModule ],
 
         controllers: [ usuarioController, LoginController, VeiculoController, PostoController ],

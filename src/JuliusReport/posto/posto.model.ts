@@ -1,5 +1,6 @@
-import { PrimaryGeneratedColumn, BaseEntity, Entity, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { PrimaryGeneratedColumn, BaseEntity, Entity, CreateDateColumn, UpdateDateColumn, Column } from "typeorm";
 import { ApiModelProperty } from "@nestjs/swagger";
+
 
 @Entity()
 export class Posto extends BaseEntity {
@@ -16,6 +17,15 @@ export class Posto extends BaseEntity {
     @ApiModelProperty()
     atualizadoem: Date;
 
+    @Column()
+    @ApiModelProperty()
+    nome: string;
 
+    @Column()
+    @ApiModelProperty()
+    bandeira: string;
 
+    @Column()
+    @ApiModelProperty()
+    local: string;
 }

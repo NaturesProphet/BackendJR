@@ -3,16 +3,18 @@ const db_port: number = parseInt( process.env.DB_PORT ) || 5432;
 const db_username = process.env.DB_USER || 'julius';
 const db_password = process.env.DB_PASSWORD || 'juliuspass';
 const db_schema = process.env.DB_SCHEMA || 'juliusreport';
-const orm_sync = ( process.env.DB_ORM_SYNC === 'true' ) || true
 
-export class BancoConfig {
-    constructor(
-        readonly type: 'postgres' = 'postgres',
-        readonly host: string = db_host,
-        readonly port: number = db_port,
-        readonly login: string = db_username,
-        readonly password = db_password,
-        readonly schema = db_schema,
-        readonly sync = orm_sync
-    ) { }
+let orm_sync: boolean;
+if ( process.env.DB_ORM_SYNC == 'true' ) {
+    orm_sync = true;
+} else {
+    orm_sync = false;
 }
+if ( process.env.NODE_ENV != 'production' ) {
+    orm_sync = true;
+}
+if ( !process.env.NODE_ENV ) {
+    orm_sync = true;
+}
+
+export { db_host, db_password, db_port, db_schema, db_username, orm_sync }
