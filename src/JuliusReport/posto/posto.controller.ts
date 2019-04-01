@@ -49,11 +49,11 @@ export class PostoController {
             // coloca o token no objeto de requisição e segue pro service
             req.token = token;
         } else {
-            res.status( 403 ).send( `Não autorizado. ` );
+            res.status( 401 ).send( `Não autorizado. ` );
         }
         jwt.verify( req.token, privateKey, async ( err, authorizedData ) => {
             if ( err ) {
-                res.status( 403 ).send( "Não autenticado" );
+                res.status( 401 ).send( "Não autenticado" );
             } else {
                 try {
                     let posto = await this.service.salva( dto );
