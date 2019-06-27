@@ -50,12 +50,13 @@ export class LoginService {
             if ( token == undefined ) {
                 token = authorization;
             }
-
-            return await jwt.verify( token, privateKey );
-
+            try {
+                return await jwt.verify( token, privateKey );
+            } catch ( err ) {
+                throw new UnauthorizedException( `Não autenticado` );
+            }
         } else {
             throw new UnauthorizedException( `Não autenticado` );
         }
-
     }
 }
