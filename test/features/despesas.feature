@@ -1,27 +1,29 @@
 #language: pt
 Funcionalidade: Cadastrar novas despesas para um veículo
-Endpoint que cadastra novas despesas para o veículo na seção
+Endpoint que cadastra novas despesas para um veículo
 
-Cenário: Os dados informados são válidos, o usuário está autenticado e o veículo está na seção.
+Cenário: 1: Os dados informados são válidos
 Dado Quero registrar uma nova despesa do meu veículo
+E possuo um token de acesso válido
 Quando eu enviar os dados de registro
-Então recebo uma mensagem de confirmação com um código 200 na Resposta
+Então recebo uma mensagem de confirmação com um código 201 na Resposta
 
-
-Cenário: Os dados informados são válidos, o usuário está autenticado mas o veículo não está na seção.
+Cenário: 2: Os dados informados NÃO são válidos.
 Dado Quero registrar uma nova despesa do meu veículo
-E ainda não inicializei a seção com um veículo
+E possuo um token de acesso válido
+E Digitei algum valor inválido no cadastro
 Quando eu enviar os dados de registro
 Então recebo uma mensagem de erro com um código 400 na Resposta
 
-Cenário: O usuário está autenticado na seção mas o veículo informado não pertence a ele.
+Cenário: 3: O veículo informado não pertence ao usuário autenticado.
 Dado Quero registrar uma nova despesa de um veículo
+E possuo um token de acesso válido
 E este veículo não me pertence
 Quando eu enviar os dados de registro
 Então recebo uma mensagem de erro com um código 403 na Resposta
 
-
-Cenário: O usuário NÃO está autenticado na seção
+Cenário: 4: O usuário NÃO está autenticado
 Dado Quero registrar uma nova despesa do meu veículo
+E não possuo um token de acesso válido
 Quando eu enviar os dados de registro
 Então recebo uma mensagem de erro com um código 401 na Resposta
