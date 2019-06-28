@@ -12,6 +12,8 @@ import {
     db_host, db_port, db_username,
     db_password, db_schema, orm_sync
 } from '../common/configs/banco.config';
+import { DespesaController } from './despesas/despesas.controller';
+import { DespesaService } from './despesas/despesas.service';
 
 
 @Module(
@@ -27,8 +29,11 @@ import {
             synchronize: orm_sync
         } ), JuliusReportModule ],
 
-        controllers: [ usuarioController, LoginController, VeiculoController, PostoController ],
-        providers: [ UsuarioService, LoginService, VeiculoService, PostoService ],
+        controllers: [ usuarioController, LoginController, VeiculoController, PostoController,
+            DespesaController ],
+
+        providers: [ UsuarioService, LoginService, VeiculoService, PostoService,
+            DespesaService ],
     }
 )
 export class JuliusReportModule { }
