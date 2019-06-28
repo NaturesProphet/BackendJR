@@ -48,4 +48,25 @@ export class Veiculo {
             return [];
         }
     }
+
+    public static findOne ( options ) {
+        if ( options.id == 1 ) {
+            let veiculo = new Veiculo();
+            veiculo.cor = 'preto';
+            veiculo.marca = 'WolksWagen';
+            veiculo.modelo = 'fuscão';
+            veiculo.placa = "KGB-6666";
+            veiculo.usuario_id = 1;
+            veiculo.anoFrabricacao = 1972;
+            veiculo.anoModelo = 1973;
+            veiculo.id = 1;
+            return veiculo;
+        }
+        else if ( options.id == 69 ) {
+            let veiculo = new Veiculo();
+            veiculo.usuario_id = 666;
+        } else {
+            return new Veiculo();
+        }
+    }
 }

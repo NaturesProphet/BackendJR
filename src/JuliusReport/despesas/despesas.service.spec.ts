@@ -2,9 +2,10 @@ import { DespesaService } from './despesas.service';
 import { DespesaDto } from './despesas.dto';
 import { Despesa } from './despesas.model';
 
+jest.mock( './despesas.model' );
+jest.mock( '../veiculo/veiculo.model' );
+
 let service = new DespesaService();
-
-
 
 test( 'salva uma despesa', async () => {
 
@@ -22,7 +23,6 @@ test( 'salva uma despesa', async () => {
 } );
 
 
-
 test( 'lança um erro ao tentar salvar uma despesa usando dados inválidos', async () => {
 
   const despesa: DespesaDto = {
@@ -33,31 +33,37 @@ test( 'lança um erro ao tentar salvar uma despesa usando dados inválidos', asy
     veiculo_id: null
   }
   let errorMsg: string;
+  let errorCode: number;
 
   try {
     await service.salva( despesa );
   }
   catch ( err ) {
-    errorMsg = err.message;
+    errorMsg = err.response.message;
+    errorCode = err.response.statusCode;
   }
-  expect( errorMsg ).toBe( 'Dados invalidos' );
+  expect( errorMsg ).toBe( 'Dados inválidos' );
+  expect( errorCode ).toBe( 400 );
 } );
 
 
 test( 'lista as despesas de um Veiculo, validando o usuário proprietário', async () => {
   const despesas: Despesa[] = await service.getByVeiculo( 1, 1 );
-  expect( despesas.length > 0 );
+  expect( despesas.length ).toBe( 2 );
 } );
 
 
 test( 'Lança um erro ao tentar listar as despesas de um Veiculo que '
   + 'não pertence ao usuário informado', async () => {
     let errorMsg: string;
+    let errorCode: number;
     try {
-      const despesas: Despesa[] = await service.getByVeiculo( 1, 0 );
+      const despesas: Despesa[] = await service.getByVeiculo( 1, 69 );
     }
     catch ( err ) {
-      errorMsg = err.message;
+      errorMsg = err.response.message;
+      errorCode = err.response.statusCode;
     }
     expect( errorMsg ).toBe( 'O veiculo buscado não pertence ao usuário especificado na consulta' );
+    expect( errorCode ).toBe( 403 );
   } );

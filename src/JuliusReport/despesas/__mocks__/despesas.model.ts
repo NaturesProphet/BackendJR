@@ -24,6 +24,15 @@ export class Despesa {
   }
 
 
+  public static find ( options ) {
+    if ( options.veiculo_id == 1 ) {
+      return [ new Despesa(), new Despesa() ]
+    } else {
+      return [];
+    }
+  }
+
+
   // mocka a consulta ao banco de dados
   public static async findOne ( obj: any ) {
     let despesa = new Despesa();
