@@ -37,20 +37,20 @@ export class ManutencaoController {
   @ApiBearerAuth()
   @ApiImplicitParam( {
     name: 'veiculo_id',
-    description: 'ID do veículo no banco',
+    description: 'ID do veículo no banco de dados',
     required: true,
-    type: 'number'
+    type: 'number',
   } )
 
   @Get( '/veiculo/:veiculo_id' )
-  @ApiOperation( { title: 'Listar manutenções de um veículo específico' } )
+  @ApiOperation( { title: 'Listar registros de manutenção de um veículo específico' } )
   @ApiResponse( {
     status: 200,
-    description: 'A busca foi feita sem erros',
+    description: 'A busca foi processada sem erros',
   } )
   @ApiResponse( {
     status: 401,
-    description: 'Usuário não autenticado',
+    description: 'Usuário não autenticado ou token inválido',
   } )
 
   public async listar ( @Res() res, @Req() req, @Param( 'veiculo_id' ) veiculo_id ) {
