@@ -99,7 +99,7 @@ defineFeature( feature, test => {
 
         then( 'recebo uma mensagem de erro com um código 400 na Resposta', () => {
             expect( response.status ).toBe( 400 );
-            expect( response.text ).toBe( 'Os dados enviados são inválidos' );
+            expect( response.body.message ).toBe( 'Dados inválidos' );
         } );
     } );
 
@@ -140,7 +140,7 @@ defineFeature( feature, test => {
 
         then( 'recebo uma mensagem de erro com um código 403 na Resposta', () => {
             expect( response.status ).toBe( 403 );
-            expect( response.text ).toBe( 'O veiculo informado não pertence ao usuário' );
+            expect( response.body.message ).toBe( 'O veiculo informado não pertence ao usuário' );
         } );
     } );
 
@@ -181,7 +181,7 @@ defineFeature( feature, test => {
 
         then( 'recebo uma mensagem de erro com um código 400 na Resposta', () => {
             expect( response.status ).toBe( 400 );
-            expect( response.text ).toBe( 'O veículo informado não existe' );
+            expect( response.body.message ).toBe( 'O veículo informado não existe' );
         } );
     } );
 
@@ -210,7 +210,7 @@ defineFeature( feature, test => {
 
         then( 'recebo uma mensagem de erro com um código 401 na Resposta', () => {
             expect( response.status ).toBe( 401 );
-            expect( response.text ).toBe( 'Não autenticado' );
+            expect( response.body.message ).toBe( 'Não autenticado' );
         } );
     } );
 

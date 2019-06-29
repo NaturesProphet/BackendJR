@@ -9,15 +9,17 @@ import { PostoService } from '../posto/posto.service';
 import { PostoController } from '../posto/posto.controller';
 import { DespesaController } from '../despesas/despesas.controller';
 import { DespesaService } from '../despesas/despesas.service';
+import { ManutencaoController } from '../manutencao/manutencao.controller';
+import { ManutencaoService } from '../manutencao/manutencao.service';
 
 @Module(
     {
         imports: [],
         controllers: [ usuarioController, LoginController, VeiculoController, PostoController,
-            DespesaController ],
+            DespesaController, ManutencaoController ],
 
         providers: [ UsuarioService, LoginService, VeiculoService, PostoService,
-            DespesaService ],
+            DespesaService, ManutencaoService ],
     }
 )
 export class JuliusReportModule { }
