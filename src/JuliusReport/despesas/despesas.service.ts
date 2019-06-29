@@ -8,8 +8,17 @@ import { Veiculo } from "../veiculo/veiculo.model";
 @Injectable()
 export class DespesaService {
 
-  async salva ( despesa: DespesaDto ): Promise<Despesa> {
+  async salva ( despesa: DespesaDto, usuario_id: number ): Promise<Despesa> {
     let novaDespesa = new Despesa();
+    const veiculo: Veiculo = await Veiculo.findOne( { id: despesa.veiculo_id } );
+
+    if ( !veiculo ) {
+      throw new BadRequestException( 'O veículo informado não existe' );
+    }
+
+    if ( veiculo.usuario_id != usuario_id ) {
+      throw new ForbiddenException( 'O veiculo informado não pertence ao usuário' );
+    }
 
     if ( despesa.dataPagamento &&
       despesa.descricao &&

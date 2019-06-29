@@ -65,8 +65,13 @@ export class Veiculo {
         else if ( options.id == 69 ) {
             let veiculo = new Veiculo();
             veiculo.usuario_id = 666;
-        } else {
-            return new Veiculo();
+        } else if ( options.id == 54321 ) {
+            let veiculo = new Veiculo();
+            veiculo.usuario_id = 12345;
+            return veiculo;
+        }
+        else {
+            return null
         }
     }
 }

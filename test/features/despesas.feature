@@ -22,7 +22,14 @@ E este veículo não me pertence
 Quando eu enviar os dados de registro
 Então recebo uma mensagem de erro com um código 403 na Resposta
 
-Cenário: 4: O usuário NÃO está autenticado
+Cenário: 4: O veículo informado não existe
+Dado Quero registrar uma nova despesa de um veículo
+E possuo um token de acesso válido
+E este veículo não foi encontrado no banco de dados
+Quando eu enviar os dados de registro
+Então recebo uma mensagem de erro com um código 400 na Resposta
+
+Cenário: 5: O usuário NÃO está autenticado
 Dado Quero registrar uma nova despesa do meu veículo
 E não possuo um token de acesso válido
 Quando eu enviar os dados de registro

@@ -38,6 +38,7 @@ export class Veiculo extends BaseEntity {
     @Column( { nullable: true } )
     observacoes: string;
 
+    @Column()
     @ManyToOne( type => Usuario, { nullable: false } )
     @JoinColumn( { name: "usuario_id" } )
     @ApiModelProperty()

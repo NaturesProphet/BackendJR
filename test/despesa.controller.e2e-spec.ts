@@ -39,7 +39,7 @@ defineFeature( feature, test => {
 
         and( 'possuo um token de acesso válido', async () => {
             let payload: loginPayload = new loginPayload();
-            payload.login = 'existente1';
+            payload.login = 'donoDaFrota123';
             payload.senha = 'test@123***';
             token = await request( app.getHttpServer() ).post( '/login' ).send( payload );
             token = token.text;
@@ -51,7 +51,7 @@ defineFeature( feature, test => {
                 descricao: 'despesa de teste',
                 tipo: 'taxa',
                 valorTotal: 0.01,
-                veiculo_id: 1
+                veiculo_id: 54321
             }
             response = await request( app.getHttpServer() ).post( endpoint )
                 .send( body ).set( { authorization: `Bearer ${token}` } );
@@ -76,7 +76,7 @@ defineFeature( feature, test => {
 
         and( 'possuo um token de acesso válido', async () => {
             let payload: loginPayload = new loginPayload();
-            payload.login = 'existente1';
+            payload.login = 'donoDaFrota123';
             payload.senha = 'test@123***';
             token = await request( app.getHttpServer() ).post( '/login' ).send( payload );
             token = token.text;
@@ -88,7 +88,7 @@ defineFeature( feature, test => {
                 descricao: 'despesa de teste',
                 tipo: 'taxa',
                 valorTotal: null,
-                veiculo_id: 1
+                veiculo_id: 54321
             }
         } );
 
@@ -99,7 +99,7 @@ defineFeature( feature, test => {
 
         then( 'recebo uma mensagem de erro com um código 400 na Resposta', () => {
             expect( response.status ).toBe( 400 );
-            expect( response.text ).toBe( 'Dados inválidos' );
+            expect( response.body.message ).toBe( 'Dados inválidos' );
         } );
     } );
 
@@ -116,7 +116,7 @@ defineFeature( feature, test => {
 
         and( 'possuo um token de acesso válido', async () => {
             let payload: loginPayload = new loginPayload();
-            payload.login = 'existente1';
+            payload.login = 'donoDaFrota123';
             payload.senha = 'test@123***';
             token = await request( app.getHttpServer() ).post( '/login' ).send( payload );
             token = token.text;
@@ -128,7 +128,7 @@ defineFeature( feature, test => {
                 descricao: 'despesa de teste',
                 tipo: 'taxa',
                 valorTotal: 0.01,
-                veiculo_id: 69
+                veiculo_id: 1
             }
         } );
 
@@ -139,13 +139,52 @@ defineFeature( feature, test => {
 
         then( 'recebo uma mensagem de erro com um código 403 na Resposta', () => {
             expect( response.status ).toBe( 403 );
-            expect( response.text ).toBe( 'O veiculo buscado não pertence ao usuário especificado na consulta' );
+            expect( response.body.message ).toBe( 'O veiculo informado não pertence ao usuário' );
+        } );
+    } );
+
+
+    test( '4: O veículo informado não existe', ( { given, and, when, then } ) => {
+        let endpoint: string;
+        let body: any;
+        let response: any;
+        let token: any;
+        given( 'Quero registrar uma nova despesa de um veículo', () => {
+            endpoint = '/despesa';
+        } );
+
+        and( 'possuo um token de acesso válido', async () => {
+            let payload: loginPayload = new loginPayload();
+            payload.login = 'donoDaFrota123';
+            payload.senha = 'test@123***';
+            token = await request( app.getHttpServer() ).post( '/login' ).send( payload );
+            token = token.text;
+        } );
+
+        and( 'este veículo não foi encontrado no banco de dados', () => {
+            body = {
+                dataPagamento: new Date(),
+                descricao: 'despesa de teste',
+                tipo: 'taxa',
+                valorTotal: 0.01,
+                veiculo_id: -1
+            }
+        } );
+
+        when( 'eu enviar os dados de registro', async () => {
+            response = await request( app.getHttpServer() ).post( endpoint )
+                .send( body ).set( { authorization: `Bearer ${token}` } );
+        } );
+
+        then( 'recebo uma mensagem de erro com um código 400 na Resposta', () => {
+            expect( response.status ).toBe( 400 );
+            expect( response.body.message ).toBe( 'O veículo informado não existe' );
         } );
     } );
 
 
 
-    test( '4: O usuário NÃO está autenticado', ( { given, and, when, then } ) => {
+    test( '5: O usuário NÃO está autenticado', ( { given, and, when, then } ) => {
         let endpoint: string;
         let body: any;
         let response: any;
@@ -176,7 +215,7 @@ defineFeature( feature, test => {
 
         then( 'recebo uma mensagem de erro com um código 401 na Resposta', () => {
             expect( response.status ).toBe( 401 );
-            expect( response.text ).toBe( 'Não autenticado' );
+            expect( response.body.message ).toBe( 'Não autenticado' );
         } );
     } );
 

@@ -95,7 +95,21 @@ test( 'getAuthentication --> retorna dados da seção autenticada com BearerAuth
     expect( authorizedData.usuario.nome ).toBe( 'mock jr' )
 } );
 
+test( 'getAuthentication --> retorna um erro se o token estiver mal formado', async () => {
 
+    let token = '123';
+    let errorCode: number;
+    let errorMsg: string;
+    try {
+        let authorizedData = await LoginService.getAuthentication( token );
+    }
+    catch ( err ) {
+        errorCode = err.message.statusCode;
+        errorMsg = err.message.message;
+    }
+    expect( errorCode ).toBe( 401 );
+    expect( errorMsg ).toBe( 'Não autenticado' );
+} );
 
 test( 'getAuthentication --> lança um erro se as credenciais não baterem', async () => {
     let token = undefined;

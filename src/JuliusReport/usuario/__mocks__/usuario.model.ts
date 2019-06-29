@@ -77,6 +77,10 @@ export class Usuario {
             usuario.veiculos.push( veiculo1 );
             usuario.veiculos.push( veiculo2 );
             return usuario;
+        } else if ( obj.login == 'donoDaFrota123' ) {
+            usuario.login = 'donoDaFrota123';
+            usuario.id = 12345;
+            return usuario;
         }
     }
 
