@@ -3,6 +3,7 @@ jest.mock( '../veiculo/veiculo.model' );
 
 import { ManutencaoDto } from './manutencao.dto'
 import { ManutencaoService } from './manutencao.service';
+import { Manutencao } from './manutencao.model';
 
 let service = new ManutencaoService();
 
@@ -97,7 +98,34 @@ test( 'salva() --> Espera-se que o método lance um erro ao tentar salvar uma ma
     let errorCode: number;
 
     try {
-      await service.salva( manutencao, 12345 );
+      await service.salva( manutencao, 1 );
+    }
+    catch ( err ) {
+      errorMsg = err.response.message;
+      errorCode = err.response.statusCode;
+    }
+    expect( errorMsg ).toBe( 'O veículo informado não existe' );
+    expect( errorCode ).toBe( 400 );
+  } );
+
+
+test( 'getByVeiculo --> Espera-se que o método lance um erro ao tentar buscar uma manutencao de '
+  + 'um veículo que não existe no banco de dados', async () => {
+
+    const manutencao: ManutencaoDto = {
+      dataInicio: new Date(),
+      dataFinal: new Date(),
+      local: 'Oficina do Tião',
+      valorMaterial: 100.00,
+      valorServico: 80.00,
+      descricao: 'Manutencao de teste',
+      veiculo_id: 0
+    }
+    let errorMsg: string;
+    let errorCode: number;
+
+    try {
+      await service.getByVeiculo( manutencao.veiculo_id, 12345 );
     }
     catch ( err ) {
       errorMsg = err.response.message;

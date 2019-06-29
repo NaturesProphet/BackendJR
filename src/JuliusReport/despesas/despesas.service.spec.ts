@@ -7,7 +7,7 @@ jest.mock( '../veiculo/veiculo.model' );
 
 let service = new DespesaService();
 
-test( 'salva uma despesa', async () => {
+test( 'salva() --> Espera-se que o método registre uma despesa e retorne o objeto gerado', async () => {
 
   const despesa: DespesaDto = {
     dataPagamento: new Date(),
@@ -23,32 +23,33 @@ test( 'salva uma despesa', async () => {
 } );
 
 
-test( 'lança um erro ao tentar salvar uma despesa usando dados inválidos', async () => {
+test( 'salva() --> Espera-se que o método lance um erro ao tentar salvar '
+  + 'uma despesa usando dados inválidos', async () => {
 
-  const despesa: DespesaDto = {
-    dataPagamento: null,
-    descricao: null,
-    tipo: null,
-    valorTotal: null,
-    veiculo_id: 1
-  }
-  let errorMsg: string;
-  let errorCode: number;
+    const despesa: DespesaDto = {
+      dataPagamento: null,
+      descricao: null,
+      tipo: null,
+      valorTotal: null,
+      veiculo_id: 1
+    }
+    let errorMsg: string;
+    let errorCode: number;
 
-  try {
-    await service.salva( despesa, 1 );
-  }
-  catch ( err ) {
-    errorMsg = err.response.message;
-    errorCode = err.response.statusCode;
-  }
-  expect( errorMsg ).toBe( 'Dados inválidos' );
-  expect( errorCode ).toBe( 400 );
-} );
+    try {
+      await service.salva( despesa, 1 );
+    }
+    catch ( err ) {
+      errorMsg = err.response.message;
+      errorCode = err.response.statusCode;
+    }
+    expect( errorMsg ).toBe( 'Dados inválidos' );
+    expect( errorCode ).toBe( 400 );
+  } );
 
 
 
-test( 'lança um erro ao tentar salvar uma despesa em '
+test( 'salva() --> Espera-se que o método lance um erro ao tentar salvar uma despesa em '
   + 'um veículo que não pertence ao usuário informado', async () => {
 
     const despesa: DespesaDto = {
@@ -73,7 +74,7 @@ test( 'lança um erro ao tentar salvar uma despesa em '
   } );
 
 
-test( 'lança um erro ao tentar salvar uma despesa em '
+test( 'salva() --> Espera-se que o método lance um erro ao tentar salvar uma despesa em '
   + 'um veículo que não existe no banco de dados', async () => {
 
     const despesa: DespesaDto = {
@@ -98,13 +99,14 @@ test( 'lança um erro ao tentar salvar uma despesa em '
   } );
 
 
-test( 'lista as despesas de um Veiculo, validando o usuário proprietário', async () => {
-  const despesas: Despesa[] = await service.getByVeiculo( 1, 1 );
-  expect( despesas.length ).toBe( 2 );
-} );
+test( 'getByVeiculo() --> Espera-se que o método retorne uma lista com as despesas '
+  + 'de um Veiculo, validando o usuário proprietário', async () => {
+    const despesas: Despesa[] = await service.getByVeiculo( 1, 1 );
+    expect( despesas.length ).toBe( 2 );
+  } );
 
 
-test( 'Lança um erro ao tentar listar as despesas de um Veiculo que '
+test( 'getByVeiculo() --> Espera-se que o método lance um erro ao tentar listar as despesas de um Veiculo que '
   + 'não pertence ao usuário informado', async () => {
     let errorMsg: string;
     let errorCode: number;
@@ -117,4 +119,28 @@ test( 'Lança um erro ao tentar listar as despesas de um Veiculo que '
     }
     expect( errorMsg ).toBe( 'O veiculo buscado não pertence ao usuário especificado na consulta' );
     expect( errorCode ).toBe( 403 );
+  } );
+
+test( 'getByVeiculo() --> Espera-se que o método lance um erro ao tentar buscar uma despesa de '
+  + 'um veículo que não existe no banco de dados', async () => {
+
+    const despesa: DespesaDto = {
+      dataPagamento: new Date(),
+      descricao: 'Despesa de teste',
+      tipo: "taxa",
+      valorTotal: 0.01,
+      veiculo_id: 0
+    }
+    let errorMsg: string;
+    let errorCode: number;
+
+    try {
+      await service.getByVeiculo( despesa.veiculo_id, 12345 );
+    }
+    catch ( err ) {
+      errorMsg = err.response.message;
+      errorCode = err.response.statusCode;
+    }
+    expect( errorMsg ).toBe( 'O veículo informado não existe' );
+    expect( errorCode ).toBe( 400 );
   } );
