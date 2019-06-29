@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.8.0](https://github.com/NaturesProphet/BackendJR/compare/v0.7.0...v0.8.0) (2019-06-29)
+
+
+### Features
+
+* **Despesa:** Camada de serviço pronta e coberta por testes. ([8b07220](https://github.com/NaturesProphet/BackendJR/commit/8b07220))
+* **Despesas:** rota GET /despesa/veiculo/:veiculo_id pronta e coberta por testes ([ab8dd64](https://github.com/NaturesProphet/BackendJR/commit/ab8dd64))
+* **Despesas:** rota POST /despesa implementada e coberta por testes ([1122ceb](https://github.com/NaturesProphet/BackendJR/commit/1122ceb))
+
+
+
 # [0.7.0](https://github.com/NaturesProphet/BackendJR/compare/v0.6.1...v0.7.0) (2019-06-27)
 
 
