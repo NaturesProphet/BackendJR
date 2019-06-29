@@ -60,4 +60,3 @@ export class ManutencaoController {
     res.status( 200 ).send( manutencoes );
   }
 }
-
