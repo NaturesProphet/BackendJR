@@ -35,14 +35,14 @@ defineFeature( feature, test => {
 
         and( 'possuo um token de acesso válido', async () => {
             let payload: loginPayload = new loginPayload();
-            payload.login = 'existente1';
+            payload.login = 'donoDaFrota123';
             payload.senha = 'test@123***';
             token = await request( app.getHttpServer() ).post( '/login' ).send( payload );
             token = token.text;
         } );
 
         and( 'informei um ID de um veículo que me pertence', () => {
-            veiculo_id = 1;
+            veiculo_id = 54321;
         } );
 
         when( 'eu enviar a requisição', async () => {
@@ -54,8 +54,9 @@ defineFeature( feature, test => {
             expect( response.status ).toBe( 200 );
             let lista = JSON.parse( response.text );
             expect( lista.length ).toBeGreaterThanOrEqual( 0 );
-            expect( lista[ 0 ].valorTotal ).toBeGreaterThan( 0 );
-            expect( lista[ 0 ].veiculo_id ).toBe( 1 );
+            if ( lista.length > 0 ) {
+                expect( lista[ 0 ].veiculo_id ).toBe( veiculo_id );
+            }
         } );
     } );
 

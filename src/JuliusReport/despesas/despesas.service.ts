@@ -3,8 +3,6 @@ import { DespesaDto } from "./despesas.dto";
 import { Despesa } from './despesas.model'
 import { Veiculo } from "../veiculo/veiculo.model";
 
-
-
 @Injectable()
 export class DespesaService {
 
@@ -40,6 +38,9 @@ export class DespesaService {
 
   async getByVeiculo ( veiculo_id: number, usuario_id: number ): Promise<Despesa[]> {
     const veiculo: Veiculo = await Veiculo.findOne( { id: veiculo_id } );
+    if ( !veiculo ) {
+      throw new BadRequestException( 'O veículo informado não existe' );
+    }
     if ( veiculo.usuario_id != usuario_id ) {
       throw new ForbiddenException( 'O veiculo buscado não pertence ao usuário especificado na consulta' );
     }

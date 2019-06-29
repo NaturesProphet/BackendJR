@@ -25,9 +25,17 @@ export class Despesa {
 
 
   public static find ( options ) {
-    if ( options.veiculo_id == 1 || options.veiculo_id == 54321 ) {
+    if ( options.veiculo_id == 1 ) {
       return [ new Despesa(), new Despesa() ]
-    } else {
+    }
+    else if ( options.veiculo_id == 54321 ) {
+      let despesa1 = new Despesa();
+      let despesa2 = new Despesa();
+      despesa1.veiculo_id = 54321;
+      despesa2.veiculo_id = 54321;
+      return [ despesa1, despesa2 ]
+    }
+    else {
       return [];
     }
   }
