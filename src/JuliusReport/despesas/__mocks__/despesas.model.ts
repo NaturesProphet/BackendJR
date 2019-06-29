@@ -25,7 +25,7 @@ export class Despesa {
 
 
   public static find ( options ) {
-    if ( options.veiculo_id == 1 ) {
+    if ( options.veiculo_id == 1 || options.veiculo_id == 54321 ) {
       return [ new Despesa(), new Despesa() ]
     } else {
       return [];
