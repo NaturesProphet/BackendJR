@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.9.0](https://github.com/NaturesProphet/BackendJR/compare/v0.8.0...v0.9.0) (2019-06-29)
+
+
+### Features
+
+* **Manutencao:** Camada do serviço pronta e coberta por testes ([f51520f](https://github.com/NaturesProphet/BackendJR/commit/f51520f))
+* **Manutencao:** Controller com as rotas POST pronto e coberto por testes ([126de54](https://github.com/NaturesProphet/BackendJR/commit/126de54))
+* **Manutencao:** rota GET /manutencao/veiculo/:veiculo_id pronta e coberta por testes ([b788441](https://github.com/NaturesProphet/BackendJR/commit/b788441))
+
+
+
 # [0.8.0](https://github.com/NaturesProphet/BackendJR/compare/v0.7.0...v0.8.0) (2019-06-29)
 
 
