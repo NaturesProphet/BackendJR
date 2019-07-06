@@ -9,6 +9,7 @@ let porta = process.env.PORT || 3000;
  */
 async function bootstrap () {
   const app = await NestFactory.create( AppModule );
+  app.enableCors();
 
   let options; // seleciona o schema http fora de prod e https em prod
   if ( ambiente == 'production' ) {
