@@ -36,7 +36,7 @@ export class LoginController {
             usuario = await this.service.login( auth.login, auth.senha );
             jwt.sign( { usuario }, privateKey, { expiresIn: tempoSessao }, ( err, token ) => {
                 if ( err ) { console.log( err ) }
-                res.send( token );
+                res.status( 200 ).send( token );
             } );
 
         } catch ( e ) {

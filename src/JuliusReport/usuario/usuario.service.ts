@@ -30,11 +30,8 @@ export class UsuarioService {
                 pessoa.email
                 && EmailValidator.validate( pessoa.email )
                 && pessoa.login
-                && pessoa.login.length > 2
                 && pessoa.nome
-                && pessoa.nome.length > 3
-                && pessoa.senha
-                && pessoa.senha.length > 6 ) {
+                && pessoa.senha ) { //desativei a complexidade mínima por enquanto
                 let usuario: Usuario = new Usuario();
                 usuario.nome = pessoa.nome;
                 usuario.email = pessoa.email;
