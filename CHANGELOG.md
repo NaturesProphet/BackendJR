@@ -1,6 +1,20 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [0.10.0](https://github.com/NaturesProphet/BackendJR/compare/v0.9.0...v0.10.0) (2019-07-14)
+
+
+### Bug Fixes
+
+* **Security:** atualização de segurança de todas as dependências e ajustes ([f36cff5](https://github.com/NaturesProphet/BackendJR/commit/f36cff5))
+
+
+### Features
+
+* **cors:** CORS ativado ([01a8864](https://github.com/NaturesProphet/BackendJR/commit/01a8864))
+
+
 
 # [0.9.0](https://github.com/NaturesProphet/BackendJR/compare/v0.8.0...v0.9.0) (2019-06-29)
 
